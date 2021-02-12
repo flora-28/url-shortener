@@ -10,11 +10,11 @@ db.once('open', () => {
   URL.create(
     {
       originalUrl: 'https://www.google.com',
-      shortenedUrl: 'jEw32'
+      url: 'jEw32'
     },
     {
       originalUrl: 'http://www.facebook.com',
-      shortenedUrl: '0df2G'
+      url: '0df2G'
 
     })
     .then(() => {

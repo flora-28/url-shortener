@@ -5,7 +5,7 @@ const urlSchema = new Schema({
     type: String,
     required: true,
   },
-  shortenedUrl: {
+  url: {
     type: String,
     required: true,
   }
