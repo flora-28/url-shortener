@@ -60,6 +60,16 @@ app.post('/', (req, res) => {
   preventDuplicate(randomUrl, res)
 })
 
+app.get('/:url', (req, res) => {
+  const url = req.params.url
+  URL.find({ url })
+    .lean()
+    .then((link) => {
+      res.redirect(link[0].originalUrl)
+    })
+    .catch(error => console.log(error))
+})
+
 app.listen(port, () => {
   console.log('App is running on http://localhost:3000')
 })
