@@ -1,6 +1,8 @@
 # URL Shortener
 An website to make the links provide by users to be shorter, build with Node.js, Express and MongoDB.
 
+![index](https://raw.githubusercontent.com/flora-28/url-shortener/master/public/photos/index.jpg)
+
 ![result-img](https://raw.githubusercontent.com/flora-28/url-shortener/master/public/photos/result-img.jpg)
 
 ## Features
