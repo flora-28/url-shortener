@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 const URL = require('../models/url')
 
-const production = 'https://radiant-reaches-97705.herokuapp.com/'
-const development = 'http://localhost:3000/'
-const commonUrl = process.env.NODE_ENV ? production : development
+if (process.env.NODE_ENV === "production") {
+  commonUrl = 'https://radiant-reaches-97705.herokuapp.com/'
+} else {
+  commonUrl = 'http://localhost:3000/'
+}
 
 //Create random URL
 function getRandomString(length) {
