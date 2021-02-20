@@ -18,23 +18,25 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let originalUrl = req.body.originalUrl
   let commonUrl = ''
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === 'production') {
     commonUrl = 'https://radiant-reaches-97705.herokuapp.com/'
   } else {
     commonUrl = 'http://localhost:3000/'
   }
-  let url = getRandomString(5)
-  let shortenedUrl = commonUrl + url
-  URL.exists({ url })
-    .then((duplicate) => {
-      if (duplicate) {
-        url = getRandomString(5)
-      } else {
-        URL.create({ originalUrl, url })
-        return shortenedUrl
+  let randomUrl = getRandomString(5)
+  URL.find()
+    .lean()
+    .then((findResult) => {
+      while (findResult.some((result) => result.url === randomUrl)) {
+        randomUrl = getRandomString(5)
       }
+      let url = randomUrl
+      URL.create({ originalUrl, url })
+        .then(() => {
+          let shortenedUrl = commonUrl + url
+          res.render('result', { shortenedUrl })
+        })
     })
-    .then((shortenedUrl) => res.render('result', { shortenedUrl }))
 })
 
 router.get('/:url', (req, res) => {
